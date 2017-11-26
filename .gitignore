@@ -6,3 +6,6 @@
 
 /cpp/*
 !main.cpp
+!f_val.cpp
+!functions.h
+!CMakeLists.txt

@@ -19,9 +19,11 @@ $(function () {
         var table = $('#table_'+st+' tbody');
         var myPlot = new MyPlot1({element: st+'div', x_range: x_range, y_range: y_range});
         myPlot.on('addPoint', function (p) {
-            var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>f</td><td class=\"epsilon-error\">0</td></tr>";
+            $.post( '/exec/fval', {x1: p.x, x2: p.y, t: 0}, function( data ) {
+                var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
 
-            table.append(html)
+                table.append(html)
+            }, "json");
         });
         myPlot.on('removePoint', function (resp) {
             var p = resp.point;

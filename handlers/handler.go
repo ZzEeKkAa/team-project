@@ -7,7 +7,7 @@ import (
 	"path"
 
 	"github.com/labstack/echo"
-	"github.com/labstack/gommon/log"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
@@ -19,8 +19,10 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
+var assetsPath string
+
 func Init(config *viper.Viper) (*echo.Echo, error) {
-	assetsPath := config.GetString("assets")
+	assetsPath = config.GetString("assets")
 
 	e := echo.New()
 	e.Renderer = &Template{templates: template.Must(template.ParseGlob(path.Join(assetsPath, "*.html")))}
@@ -40,6 +42,9 @@ func Init(config *viper.Viper) (*echo.Echo, error) {
 		return nil
 		//return ctx.Render(http.StatusOK, "index.html", nil)
 	})
+
+	e.GET("/exec/build", build)
+	e.POST("/exec/fval", fval)
 
 	return e, nil
 }
