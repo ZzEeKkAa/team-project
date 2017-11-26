@@ -96,7 +96,25 @@
         <a class="nav-item nav-link" id="nav-b1-tab" data-toggle="tab" href="#nav-b1" role="tab" aria-controls="nav-b1" aria-selected="false">$y=b_1$</a>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-t0" role="tabpanel" aria-labelledby="nav-profile-tab">$t_0$</div>
+        <div class="tab-pane fade show active" id="nav-t0" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="row">
+                <div class="col-lg-6"><div id="t0div"></div></div>
+                <div class="col-lg-6">
+                    <table class="table table-striped table-bordered table-hover" id="table_t0">
+                        <thead>
+                        <tr>
+                            <th>$\mathbf{x}$</th>
+                            <th>$\mathbf{y}$</th>
+                            <th>$\mathbf{f(x,y,t_0)}$</th>
+                            <th>$\mathbf{\varepsilon_f}$</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <div class="tab-pane fade" id="nav-a0" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="row">
                 <div class="col-lg-6"><div id="a0div"></div></div>
@@ -122,9 +140,63 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="nav-a1" role="tabpanel" aria-labelledby="nav-profile-tab">$a_1$</div>
-        <div class="tab-pane fade" id="nav-b0" role="tabpanel" aria-labelledby="nav-contact-tab"><div id="myDiv" style="width:480px; height:400px;"></div></div>
-        <div class="tab-pane fade" id="nav-b1" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+        <div class="tab-pane fade" id="nav-a1" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="row">
+                <div class="col-lg-6"><div id="a1div"></div></div>
+                <div class="col-lg-6">
+                    <table class="table table-striped table-bordered table-hover" id="table_a1">
+                        <thead>
+                        <tr>
+                            <th>$\mathbf{t}$</th>
+                            <th>$\mathbf{y}$</th>
+                            <th>$\mathbf{f(a_1,y,t)}$</th>
+                            <th>$\mathbf{\varepsilon_f}$</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-b0" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="row">
+                <div class="col-lg-6"><div id="b0div"></div></div>
+                <div class="col-lg-6">
+                    <table class="table table-striped table-bordered table-hover" id="table_b0">
+                        <thead>
+                        <tr>
+                            <th>$\mathbf{t}$</th>
+                            <th>$\mathbf{x}$</th>
+                            <th>$\mathbf{f(x,b_0,t)}$</th>
+                            <th>$\mathbf{\varepsilon_f}$</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-b1" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="row">
+                <div class="col-lg-6"><div id="b1div"></div></div>
+                <div class="col-lg-6">
+                    <table class="table table-striped table-bordered table-hover" id="table_b1">
+                        <thead>
+                        <tr>
+                            <th>$\mathbf{t}$</th>
+                            <th>$\mathbf{x}$</th>
+                            <th>$\mathbf{f(x,b_1,t)}$</th>
+                            <th>$\mathbf{\varepsilon_f}$</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <h2>Результат</h2>

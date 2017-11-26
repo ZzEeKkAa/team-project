@@ -5,28 +5,36 @@ $(function () {
         }
     });
 
+    // TODO: rewrite for updative table
     $('#table_a0').editableTableWidget();
 
     var d3 = Plotly.d3;
     // var myPlot = document.getElementById('myDiv');
-    var table_a0 = $('#table_a0 tbody');
-    var myPlot = new MyPlot1({element: 'a0div', x_range: [1, 2], y_range: [0, 1]});
-    myPlot.on('addPoint', function (p) {
-        var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>f</td><td class=\"epsilon-error\">0</td></tr>";
-        table_a0.append(html)
-    });
-    myPlot.on('removePoint', function (resp) {
-        console.log(resp)
-        var i = resp.ind;
-        var p = resp.point;
 
-        var tr = $('#table_a0 tbody tr[data-x="' + p.x + '"][data-y="' + p.y + '"]')[0];
+    var x_range = [1, 2];
+    var y_range = [0, 1];
 
-        console.log(tr.innerHTML);
-        tr.remove();
-    });
-    // myPlot.on('deletePoint',function...)
+    var magic = function (st, x_range, y_range) {
+        var table = $('#table_'+st+' tbody');
+        var myPlot = new MyPlot1({element: st+'div', x_range: x_range, y_range: y_range});
+        myPlot.on('addPoint', function (p) {
+            var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>f</td><td class=\"epsilon-error\">0</td></tr>";
 
+            table.append(html)
+        });
+        myPlot.on('removePoint', function (resp) {
+            var p = resp.point;
+            var tr = $('#table_'+st+' tbody tr[data-x="' + p.x + '"][data-y="' + p.y + '"]')[0];
+
+            tr.remove();
+        });
+    };
+
+    magic("t0",x_range,y_range);
+    magic("a0",x_range,y_range);
+    magic("a1",x_range,y_range);
+    magic("b0",x_range,y_range);
+    magic("b1",x_range,y_range);
 
     /*Plotly.newPlot('myDiv', [{
       y: [1, 2, 1],
