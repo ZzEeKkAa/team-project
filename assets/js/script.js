@@ -30,10 +30,12 @@ var MyPlot1 = function(config) {
         //},
         hovermode:'closest',
         xaxis:{
-            autorange:true,
-            zeroline:true,
-        },
-        yaxis:{
+			title: config.x_title||'',
+			autorange:true,
+			zeroline:true,
+		},
+		yaxis:{
+			title: config.y_title||'',
             autorange:true,
             zeroline:true
         },
@@ -113,7 +115,7 @@ MyPlot1.prototype.addPoint = function(x,y){
 } ;
 MyPlot1.prototype.deletePoint = function(i){
     var self = this ;
-    var point = self.points.splice(i,1)[0] ;
+    var point = self.points.splice(i-1,1)[0] ;
     Plotly.deleteTraces(self.gd, i);
     self.emit('removePoint',{ind:i,point:point}) ;
 } ;
@@ -121,9 +123,10 @@ MyPlot1.prototype.redraw = function(){
     var self = this ;
     Plotly.redraw(self.gd);
 } ;
-var My3dPlot1 = function(element) {
+var My3dPlot1 = function(element,config) {
     EventEmitter.call(this);
     this.gd = document.getElementById(element) ;
+	this.config = config ;
     this.points = [] ;
     var self = this ;
     Plotly.newPlot(self.gd, [{
@@ -142,14 +145,17 @@ var My3dPlot1 = function(element) {
         //},
         hovermode:'closest',
         xaxis:{
+			title:config.x_title||'',
             autorange:true,
             zeroline:true,
         },
         yaxis:{
+			title:config.y_title||'',
             autorange:true,
             zeroline:true
         },
         zaxis:{
+			title:config.z_title||'',
             autorange:true,
             zeroline:true
         },
@@ -267,18 +273,21 @@ var My3dPlot2 = function(config) {
         //	t: 0
         //},
         scene: {
-            xaxis:{title: 'X AXIS TITLE'},
-            yaxis:{title: 'Y AXIS TITLE'},
-            zaxis:{title: 'Z AXIS TITLE'},
+            xaxis:{title: config.x_title||''},
+            yaxis:{title: config.y_title||''},
+            zaxis:{title: config.z_title||''},
         },
         xaxis: {
-            title: 'Year',
             showgrid: true,
             zeroline: false
         },
         yaxis: {
-            title: 'Percent',
-            showline: false
+            showgrid: true,
+            zeroline: false
+        },
+        zaxis: {
+            showgrid: true,
+            zeroline: false
         }
     };
     Plotly.newPlot(self.gd, data, layout).then(gd => {
@@ -396,7 +405,7 @@ $(function(){
     {x:0,y:1,z:1},
     {x:1,y:1,z:5},
     ]) ;*/
-    var my3dPlot2 = new My3dPlot2({
+    /*var my3dPlot2 = new My3dPlot2({
         element:'myDiv',
         x_range:[0,1],
         y_range:[0,1],
@@ -404,7 +413,7 @@ $(function(){
         N_x:4,
         N_y:4,
         N_t:4
-    })
+    })*/
 
     /*var layout = {
       title: 'Rectangles Positioned Relative to the Plot and to the Axes',
