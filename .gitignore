@@ -3,3 +3,6 @@
 
 #binary
 /team-project*
+
+/cpp/*
+!main.cpp

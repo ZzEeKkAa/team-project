@@ -11,8 +11,9 @@ $(function () {
     var d3 = Plotly.d3;
     // var myPlot = document.getElementById('myDiv');
 
-    var x_range = [1, 2];
-    var y_range = [0, 1];
+    var x_range = [parseFloat($('#a0-input')[0].value), parseFloat($('#a1-input')[0].value)];
+    var y_range = [parseFloat($('#b0-input')[0].value), parseFloat($('#b1-input')[0].value)];
+    var t_range = [0, parseFloat($('#t-input')[0].value)];
 
     var magic = function (st, x_range, y_range) {
         var table = $('#table_'+st+' tbody');
@@ -31,10 +32,10 @@ $(function () {
     };
 
     magic("t0",x_range,y_range);
-    magic("a0",x_range,y_range);
-    magic("a1",x_range,y_range);
-    magic("b0",x_range,y_range);
-    magic("b1",x_range,y_range);
+    magic("a0",t_range,y_range);
+    magic("a1",t_range,y_range);
+    magic("b0",t_range,x_range);
+    magic("b1",t_range,x_range);
 
     var modelingMagic = function (x_range, y_range) {
         var table = $('#table_modeling tbody');
