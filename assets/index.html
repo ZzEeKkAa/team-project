@@ -202,17 +202,50 @@
     <div class="row">
         <div class="col-lg-6"><div id="modeling_div"></div></div>
         <div class="col-lg-6">
-            <table class="table table-striped table-bordered table-hover" id="table_modeling">
-                <thead>
-                <tr>
-                    <th>$\mathbf{x}$</th>
-                    <th>$\mathbf{y}$</th>
-                    <th>$\mathbf{t}$</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="row modeling-row">
+                <div class="col-12 col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="add-x">X=</span>
+                        <input type="number" class="form-control" placeholder="0.00" aria-label="X position" aria-describedby="add-x">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="add-y">Y=</span>
+                        <input type="number" class="form-control" placeholder="0.00" aria-label="Y position" aria-describedby="add-y">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="add-z">Z=</span>
+                        <input type="number" class="form-control" placeholder="0.00" aria-label="Z position" aria-describedby="add-z">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <button type="button" class="btn btn-success col-12" id="modeling_add">Add</button>
+                </div>
+                <div class="col-12 col-md-6">
+                    <button type="button" class="btn btn-warning col-12" id="modeling_gen1">Generate 1</button>
+                </div>
+                <div class="col-12 col-md-6">
+                    <button type="button" class="btn btn-warning col-12" id="modeling_gen2">Generate 2</button>
+                </div>
+            </div>
+            <div>
+                <div class="col-12">
+                    <table class="table table-striped table-bordered table-hover" id="table_modeling">
+                        <thead>
+                        <tr>
+                            <th>$\mathbf{x}$</th>
+                            <th>$\mathbf{y}$</th>
+                            <th>$\mathbf{t}$</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 

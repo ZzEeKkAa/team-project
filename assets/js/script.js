@@ -38,6 +38,44 @@ $(function () {
 
     var modelingMagic = function (x_range, y_range) {
         var table = $('#table_modeling tbody');
+        var addButton = $('#modeling_add');
+        var generate1Button = $('#modeling_gen1');
+        var generate2Button = $('#modeling_gen2');
+        var xInput = $('#add-x').next()[0];
+        var yInput = $('#add-y').next()[0];
+        var zInput = $('#add-z').next()[0];
+
+        addButton.click(function () {
+            x = xInput.value;
+            y = yInput.value;
+            z = zInput.value;
+
+            if(x=="" || y=="" || z==""){
+                return;
+            }
+
+            var html = "<tr data-x='" + x + "' data-y='" + y + "' data-z='" + z + "'><td>" + x + "</td><td>" + y + "</td><td>" + z + "</td></tr>";
+
+            var node = $($.parseHTML(html));
+            node.on("click",function () {
+                var tr = $(this);
+
+                var x = tr.attr('data-x');
+                var y = tr.attr('data-y');
+                var z = tr.attr('data-z');
+
+                console.log(x,y,z);
+
+                tr.remove();
+            });
+
+            table.append(node);
+            xInput.value="";
+            yInput.value="";
+            zInput.value="";
+        });
+
+        // TODO: replace with 3d object
         var myPlot = new MyPlot1({element: 'modeling_div', x_range: x_range, y_range: y_range});
         myPlot.on('addPoint', function (p) {
             var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>f</td></tr>";
