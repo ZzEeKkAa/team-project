@@ -43,18 +43,18 @@ $(function () {
         var generate2Button = $('#modeling_gen2');
         var xInput = $('#add-x').next()[0];
         var yInput = $('#add-y').next()[0];
-        var zInput = $('#add-z').next()[0];
+        var tInput = $('#add-t').next()[0];
 
         addButton.click(function () {
             x = xInput.value;
             y = yInput.value;
-            z = zInput.value;
+            t = tInput.value;
 
-            if(x=="" || y=="" || z==""){
+            if(x=="" || y=="" || t==""){
                 return;
             }
 
-            var html = "<tr data-x='" + x + "' data-y='" + y + "' data-z='" + z + "'><td>" + x + "</td><td>" + y + "</td><td>" + z + "</td></tr>";
+            var html = "<tr data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
 
             var node = $($.parseHTML(html));
             node.on("click",function () {
@@ -62,9 +62,9 @@ $(function () {
 
                 var x = tr.attr('data-x');
                 var y = tr.attr('data-y');
-                var z = tr.attr('data-z');
+                var t = tr.attr('data-t');
 
-                console.log(x,y,z);
+                console.log(x,y,t);
 
                 tr.remove();
             });
@@ -72,7 +72,7 @@ $(function () {
             table.append(node);
             xInput.value="";
             yInput.value="";
-            zInput.value="";
+            tInput.value="";
         });
 
         // TODO: replace with 3d object
