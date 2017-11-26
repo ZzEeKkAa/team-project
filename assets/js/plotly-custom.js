@@ -303,11 +303,11 @@ var My3dPlot2 = function (config) {
         color: 'rgb(255,100,200)',
     x: [a1, a1, b1, b1, a1, a1, b1, b1],
     y: [a2, b2, b2, a2, a2, b2, b2, a2],
-    z: [0, 0, 0, 0, T, T, T, T],
+    z: [0,  0,  0,  0,  T,  T,  T,  T],
 			opacity: 0.8,
-    i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
+    i: [7, 0, 0, 0, 4, 4, 6, 1, 4, 0, 7, 2],
     j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
-    k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6]	
+    k: [0, 7, 2, 3, 6, 7, 1, 6, 5, 5, 3, 6]
   }], layout).then(function (gd) {
         gd.on('plotly_click', function (d) {
             console.log(d)

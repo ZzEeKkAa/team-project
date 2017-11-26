@@ -85,7 +85,7 @@ $(function () {
 			}
         });
 
-        var myPlot1 = new My3dPlot2({element: 'modeling_div', x_range:x_range,y_range:y_range,T:$('#t-input')[0].value,x_title: 'x_title', y_title: 'y_title', z_title:'z_title'});
+        var myPlot1 = new My3dPlot2({element: 'modeling_div', x_range:x_range,y_range:y_range,T:$('#t-input')[0].value,x_title: 'X', y_title: 'Y', z_title:'T'});
     };
     modelingMagic(x_range,y_range);
 
