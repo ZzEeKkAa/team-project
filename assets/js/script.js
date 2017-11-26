@@ -78,7 +78,7 @@ $(function () {
 			y = parseFloat(y) ;
 			t = parseFloat(t) ;
 			if(!isNaN(x)&&!isNaN(y)&&!isNaN(t)){
-				myPlot1.addPoints([{x:x,z:z,y:y,color:'rgb(100,100,200)',hash:hash}]) ;
+				myPlot1.addPoints([{x:x,t:t,y:y,color:'rgb(100,100,200)',hash:hash}]) ;
 			}
         });
 
