@@ -358,3 +358,75 @@ My3dPlot2.prototype.deletePoint = function (hash) {
 		Plotly.deleteTraces(self.gd, i+1);
 	}
 };
+My3dPlot2.prototype.generateRandomPoint = function (type) {
+    var self = this;
+    var a1 = config.x_range[0];
+    var b1 = config.x_range[1];
+    var a2 = config.y_range[0];
+    var b2 = config.y_range[1];
+    var T = config.T;
+	if(type==='S_0_T'){
+		return {
+			x:a1+Math.random()*(b1-a1),
+			y:a2+Math.random()*(b2-a2),
+			z:Math.random()*T,
+		}
+	}else if(type==='S__0'){
+		return {
+			x:a1+Math.random()*(b1-a1),
+			y:a2+Math.random()*(b2-a2),
+			z:-T+Math.random()*T,
+		}
+	}else{
+		var cube = Math.floor(Math.random()*8) ;
+		if(cube===0){
+			return {
+				x:a1-Math.random()*(b1-a1),
+				y:a2+Math.random()*(b2-a2),
+				z:Math.random()*T,
+			}
+		}else if(cube===1){
+			return {
+				x:b1+Math.random()*(b1-a1),
+				y:a2+Math.random()*(b2-a2),
+				z:Math.random()*T,
+			}
+		}else if(cube===2){
+			return {
+				x:a1+Math.random()*(b1-a1),
+				y:a2-Math.random()*(b2-a2),
+				z:Math.random()*T,
+			}
+		}else if(cube===3){
+			return {
+				x:a1+Math.random()*(b1-a1),
+				y:b2+Math.random()*(b2-a2),
+				z:Math.random()*T,
+			}
+		}else if(cube===4){
+			return {
+				x:a1-Math.random()*(b1-a1),
+				y:a2-Math.random()*(b2-a2),
+				z:Math.random()*T,
+			}
+		}else if(cube===5){
+			return {
+				x:b1+Math.random()*(b1-a1),
+				y:a2-Math.random()*(b2-a2),
+				z:Math.random()*T,
+			}
+		}else if(cube===6){
+			return {
+				x:a1-Math.random()*(b1-a1),
+				y:b2+Math.random()*(b2-a2),
+				z:Math.random()*T,
+			}
+		}else{
+			return {
+				x:b1+Math.random()*(b1-a1),
+				y:b2+Math.random()*(b2-a2),
+				z:Math.random()*T,
+			}
+		}
+	}
+};
