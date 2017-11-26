@@ -1,0 +1,16 @@
+.MathJax:focus, .mjx-chtml:focus, .MathJax_SVG:focus {
+    outline: 0px solid gray;
+}
+
+div.container{
+    background: rgba(255,255,255,0.8);
+}
+
+body{
+    background-image: url('../img/bg.png');
+}
+
+#a0div{
+    width: 512px;
+    height: 512px;
+}

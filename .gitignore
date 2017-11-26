@@ -1,1 +1,5 @@
+#workspace
 .idea/
+
+#binary
+/team-project*

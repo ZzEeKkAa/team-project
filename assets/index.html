@@ -1,32 +1,162 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Team work</title>
-        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-        {{/*<script type="text/x-mathjax-config">*/}}
-            {{/*MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});*/}}
-        {{/*</script>*/}}
-        {{/*<script type="text/javascript" async*/}}
-                {{/*src="js/MathJax.js?config=TeX-AMS_CHTML">*/}}
-                {{/*src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML">*/}}
-        {{/*</script>*/}}
-    </head>
-    <body>
-        When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
-        $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
-        <p>Hello, world!</p>
-        <div id="myDiv" style="width:480px; height:400px;"></div>
+<head>
+    <title>Team work</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-slider.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <h2>Постанова задачі</h2>
+    <h3>Диференційний оператор</h3>
+    <div class="row">
+        <div class="col">
+            $L(\partial_s) = $
+            <div class="btn-group">
+                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    $\partial_t^2 - e^2 \cdot (\partial_{x_1}^2  + \partial_{x_2}^2)$
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item" href="#">$\partial_t^2 - e^2 \cdot (\partial_{x_1}^2  + \partial_{x_2}^2)$</li>
+                    <div class="dropdown-divider"></div>
+                    <li class="dropdown-item" href="#">Custom</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    </body>
-    <footer>
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-        </script>
-        <script src="js/jquery.slim.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/plotly.min.js"></script>
-        <script src="js/mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
-        <script src="js/script.js"></script>
-    </footer>
+    <h3>Шукана функція</h3>
+    <div class="row">
+        <div class="col">
+            $f(s) = $
+            <div class="btn-group">
+                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    $t^2 - x_1^2 + x_2^2$
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item" href="#">$t^2 - x_1^2 + x_2^2$</li>
+                    <div class="dropdown-divider"></div>
+                    <li class="dropdown-item" href="#">Custom</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h3>Область дослідження</h3>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="form-group row">
+                <label for="a0-input" class="col-4 col-form-label">$a_0 = $</label>
+                <div class="col-8">
+                    <input class="form-control" type="number" value="5" id="a0-input">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group row">
+                <label for="a1-input" class="col-4 col-form-label">$a_1 = $</label>
+                <div class="col-8">
+                    <input class="form-control" type="number" value="5" id="a1-input">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="form-group row">
+                <label for="b0-input" class="col-4 col-form-label">$b_0 = $</label>
+                <div class="col-8">
+                    <input class="form-control" type="number" value="5" id="b0-input">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="form-group row">
+                <label for="b1-input" class="col-4 col-form-label">$b_1 = $</label>
+                <div class="col-8">
+                    <input class="form-control" type="number" value="5" id="b1-input">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <label for="t-input" class="col-4 col-md-2 col-form-label">$T = $</label>
+        <div class="col-8 col-md-4">
+            <input class="form-control" type="number" value="5" id="t-input">
+        </div>
+    </div>
+
+    <h3>Початкові та крайові умови</h3>
+    <nav class="nav nav-tabs" id="myTab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-t0-tab" data-toggle="tab" href="#nav-t0" role="tab" aria-controls="nav-t0" aria-selected="true">$t=0$</a>
+        <a class="nav-item nav-link" id="nav-a0-tab" data-toggle="tab" href="#nav-a0" role="tab" aria-controls="nav-a0" aria-selected="true">$x=a_0$</a>
+        <a class="nav-item nav-link" id="nav-a1-tab" data-toggle="tab" href="#nav-a1" role="tab" aria-controls="nav-a1" aria-selected="false">$x=a_1$</a>
+        <a class="nav-item nav-link" id="nav-b0-tab" data-toggle="tab" href="#nav-b0" role="tab" aria-controls="nav-b0" aria-selected="false">$y=b_0$</a>
+        <a class="nav-item nav-link" id="nav-b1-tab" data-toggle="tab" href="#nav-b1" role="tab" aria-controls="nav-b1" aria-selected="false">$y=b_1$</a>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-t0" role="tabpanel" aria-labelledby="nav-profile-tab">$t_0$</div>
+        <div class="tab-pane fade" id="nav-a0" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="row">
+                <div class="col-lg-6"><div id="a0div"></div></div>
+                <div class="col-lg-6">
+                <table class="table table-striped table-bordered table-hover" id="table_a0">
+                    <thead>
+                    <tr>
+                        <th>$\mathbf{t}$</th>
+                        <th>$\mathbf{y}$</th>
+                        <th>$\mathbf{f(a_0,y,t)}$</th>
+                        <th>$\mathbf{\varepsilon_f}$</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td class="epsilon-error">1</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-a1" role="tabpanel" aria-labelledby="nav-profile-tab">$a_1$</div>
+        <div class="tab-pane fade" id="nav-b0" role="tabpanel" aria-labelledby="nav-contact-tab"><div id="myDiv" style="width:480px; height:400px;"></div></div>
+        <div class="tab-pane fade" id="nav-b1" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+    </div>
+
+    <h2>Результат</h2>
+    <h3>Графік функції</h3>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div id="myDiv1"></div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div id="myDiv2"></div>
+        </div>
+        <div class="col-12">
+            Тут буде функція похибок
+        </div>
+        <div class="col-12">
+            <input width="100%" id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="1.2" data-slider-step="0.33" data-slider-value="0"/>
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script src="js/jquery.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-slider.js"></script>
+    <script src="js/jquery-table.js"></script>
+    <script src="js/plotly.min.js"></script>
+    <script src="js/mathjax/MathJax.js?config=TeX-AMS_CHTML"></script>
+    <script src="js/bundle.js"></script>
+    <script src="js/script.js"></script>
+</footer>
 </html>

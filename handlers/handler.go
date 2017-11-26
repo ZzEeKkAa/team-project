@@ -2,13 +2,12 @@ package handlers
 
 import (
 	"html/template"
+	"io"
+	"os"
 	"path"
 
-	"io"
-
-	"net/http"
-
 	"github.com/labstack/echo"
+	"github.com/labstack/gommon/log"
 	"github.com/spf13/viper"
 )
 
@@ -31,7 +30,15 @@ func Init(config *viper.Viper) (*echo.Echo, error) {
 	e.Static("/img", path.Join(assetsPath, "img"))
 
 	e.GET("/", func(ctx echo.Context) error {
-		return ctx.Render(http.StatusOK, "index.html", nil)
+		f, err := os.Open(path.Join(assetsPath, "index.html"))
+		if err != nil {
+			log.Error(err)
+
+			return err
+		}
+		io.Copy(ctx.Response(), f)
+		return nil
+		//return ctx.Render(http.StatusOK, "index.html", nil)
 	})
 
 	return e, nil
