@@ -360,6 +360,7 @@ My3dPlot2.prototype.deletePoint = function (hash) {
 };
 My3dPlot2.prototype.generateRandomPoint = function (type) {
     var self = this;
+	var config = self.config ;
     var a1 = config.x_range[0];
     var b1 = config.x_range[1];
     var a2 = config.y_range[0];
