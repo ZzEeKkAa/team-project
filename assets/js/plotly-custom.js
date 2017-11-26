@@ -174,8 +174,8 @@ var My3dPlot2 = function (config) {
     this.config = config;
     this.gd = document.getElementById(config.element);
     var points = [];
-
-    function getRectPoints(a1, b1, N_x, a2, b2, N_y, a3, b3, N_z, type) {
+	var self = this ;
+    /*function getRectPoints(a1, b1, N_x, a2, b2, N_y, a3, b3, N_z, type) {
         var points = [];
         var h_x = (b1 - a1) / N_x;
         var h_y = (b2 - a2) / N_y;
@@ -266,7 +266,13 @@ var My3dPlot2 = function (config) {
         },
         type: 'scatter3d'
     };
-    var data = [trace];
+    var data = [trace];*/
+	self.points = [] ;
+    var a1 = config.x_range[0];
+    var b1 = config.x_range[1];
+    var a2 = config.y_range[0];
+    var b2 = config.y_range[1];
+    var T = config.T;
     var layout = {
         //margin: {
         //	l: 0,
@@ -292,7 +298,17 @@ var My3dPlot2 = function (config) {
             zeroline: false
         }
     };
-    Plotly.newPlot(self.gd, data, layout).then(function (gd) {
+    Plotly.newPlot(self.gd, [{
+    type: "mesh3d",
+        color: 'rgb(255,100,200)',
+    x: [a1, a1, b1, b1, a1, a1, b1, b1],
+    y: [a2, b2, b2, a2, a2, b2, b2, a2],
+    z: [0, 0, 0, 0, T, T, T, T],
+			opacity: 0.8,
+    i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
+    j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
+    k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6]	
+  }], layout).then(function (gd) {
         gd.on('plotly_click', function (d) {
             console.log(d)
         })
@@ -300,21 +316,45 @@ var My3dPlot2 = function (config) {
 };
 
 util.inherits(My3dPlot2, EventEmitter);
-My3dPlot2.prototype.togglePoint = function (points) {
+/*
+point = {x:x,y:y:z:z,color:color,type:type,hash:hash}
+*/
+My3dPlot2.prototype.addPoints = function (points) {
     var self = this;
-    Plotly.deleteTraces('myDiv', 0);
-    Plotly.addTraces('myDiv', {
-        opacity: 0.8,
-        color: 'rgb(300,100,200)',
-        x: points.map(function (p) {
-            return p.x
-        }),
-        y: points.map(function (p) {
-            return p.y
-        }),
-        z: points.map(function (p) {
-            return p.z
-        }),
-        type: 'mesh3d'
-    });
+	self.points = self.points.concat(points) ;
+	console.log('addPoints')
+    Plotly.addTraces(self.gd, points.map(function(p){
+		return {
+			x: [p.x],
+			y: [p.y],
+			z: [p.z],
+			mode: 'markers',
+			opacity: 0.8,
+			marker: {
+				color: p.color || 'rgb(300,100,200)',
+				size: 6,
+				symbol: 'circle',
+				line: {width: 0},
+				//opacity: 0.8
+			},
+			type: 'scatter3d'
+		}
+	}));
+};
+My3dPlot2.prototype.deletePoint = function (hash) {
+    var self = this;
+	var i = 0 ;
+	console.log('deletePoint') ;
+	console.log(hash) ;
+    for(var i=0;i<self.points.length;++i){
+		console.log('deletePoint') ;
+		if(self.points[i].hash === hash) break ;
+	}
+	console.log(self.points) ;
+	console.log(i) ;
+	
+	if(i<self.points.length){
+		self.points.splice(i,1) ;
+		Plotly.deleteTraces(self.gd, i+1);
+	}
 };

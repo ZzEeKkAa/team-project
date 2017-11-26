@@ -73,21 +73,16 @@ $(function () {
             xInput.value="";
             yInput.value="";
             tInput.value="";
+			
+			x = parseFloat(x) ;
+			y = parseFloat(y) ;
+			t = parseFloat(t) ;
+			if(!isNaN(x)&&!isNaN(y)&&!isNaN(t)){
+				myPlot1.addPoints([{x:x,z:z,y:y,color:'rgb(100,100,200)',hash:hash}]) ;
+			}
         });
 
-        // TODO: replace with 3d object
-        var myPlot = new MyPlot1({element: 'modeling_div', x_range: x_range, y_range: y_range});
-        myPlot.on('addPoint', function (p) {
-            var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>f</td></tr>";
-
-            table.append(html)
-        });
-        myPlot.on('removePoint', function (resp) {
-            var p = resp.point;
-            var tr = $('#table_modeling tbody tr[data-x="' + p.x + '"][data-y="' + p.y + '"]')[0];
-
-            tr.remove();
-        });
+        var myPlot1 = new My3dPlot2({element: 'modeling_div', x_range:x_range,y_range:y_range,T:$('#t-input')[0].value,x_title: 'x_title', y_title: 'y_title', z_title:'z_title'});
     };
     modelingMagic(x_range,y_range);
 
