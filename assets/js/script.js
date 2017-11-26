@@ -56,15 +56,17 @@ $(function () {
 
             var html = "<tr data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
 
+			var hash = (x+'_'+y+'_'+z) ;
             var node = $($.parseHTML(html));
             node.on("click",function () {
                 var tr = $(this);
 
                 var x = tr.attr('data-x');
-                var y = tr.attr('data-y');
+                // var y = tr.attr('data-y');
                 var t = tr.attr('data-t');
 
                 console.log(x,y,t);
+				myPlot1.deletePoint(hash) ;
 
                 tr.remove();
             });
