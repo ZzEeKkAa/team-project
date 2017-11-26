@@ -56,7 +56,7 @@ $(function () {
 
             var html = "<tr data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
 
-			var hash = (x+'_'+y+'_'+z) ;
+			var hash = (x+'_'+y+'_'+t) ;
             var node = $($.parseHTML(html));
             node.on("click",function () {
                 var tr = $(this);
@@ -80,7 +80,7 @@ $(function () {
 			y = parseFloat(y) ;
 			t = parseFloat(t) ;
 			if(!isNaN(x)&&!isNaN(y)&&!isNaN(t)){
-				myPlot1.addPoints([{x:x,t:t,y:y,color:'rgb(100,100,200)',hash:hash}]) ;
+				myPlot1.addPoints([{x:x,z:t,y:y,color:'rgb(100,100,200)',hash:hash}]) ;
 			}
         });
 
