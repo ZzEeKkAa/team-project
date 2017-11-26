@@ -36,6 +36,23 @@ $(function () {
     magic("b0",x_range,y_range);
     magic("b1",x_range,y_range);
 
+    var modelingMagic = function (x_range, y_range) {
+        var table = $('#table_modeling tbody');
+        var myPlot = new MyPlot1({element: 'modeling_div', x_range: x_range, y_range: y_range});
+        myPlot.on('addPoint', function (p) {
+            var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>f</td></tr>";
+
+            table.append(html)
+        });
+        myPlot.on('removePoint', function (resp) {
+            var p = resp.point;
+            var tr = $('#table_modeling tbody tr[data-x="' + p.x + '"][data-y="' + p.y + '"]')[0];
+
+            tr.remove();
+        });
+    };
+    modelingMagic(x_range,y_range);
+
     /*Plotly.newPlot('myDiv', [{
       y: [1, 2, 1],
       line: { shape: 'spline' }
