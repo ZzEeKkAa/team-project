@@ -45,6 +45,8 @@ func Init(config *viper.Viper) (*echo.Echo, error) {
 
 	e.GET("/exec/build", build)
 	e.POST("/exec/fval", fval)
+	e.POST("/exec/fvals", fvals)
+	e.POST("/exec/solve", solve)
 
 	return e, nil
 }

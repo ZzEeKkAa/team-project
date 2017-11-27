@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
         double x2 = atof(argv[2]);
         double t = atof(argv[3]);
 
-        cout<<f(x1,x2,t)<<endl;
+        cout<<funcs::f(x1,x2,t)<<endl;
     }
 
     return 0;

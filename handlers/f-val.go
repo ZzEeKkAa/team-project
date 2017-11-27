@@ -3,12 +3,11 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
-
-	"fmt"
 
 	"github.com/labstack/echo"
 	log "github.com/sirupsen/logrus"
