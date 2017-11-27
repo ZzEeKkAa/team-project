@@ -1,5 +1,0 @@
-/home/zeka/go/src/github.com/ZzEeKkAa/team-project/cpp/CMakeFiles/edit_cache.dir
-/home/zeka/go/src/github.com/ZzEeKkAa/team-project/cpp/CMakeFiles/rebuild_cache.dir
-/home/zeka/go/src/github.com/ZzEeKkAa/team-project/cpp/CMakeFiles/fvals.dir
-/home/zeka/go/src/github.com/ZzEeKkAa/team-project/cpp/CMakeFiles/solve.dir
-/home/zeka/go/src/github.com/ZzEeKkAa/team-project/cpp/CMakeFiles/fval.dir
