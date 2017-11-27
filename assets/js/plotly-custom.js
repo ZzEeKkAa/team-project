@@ -280,6 +280,7 @@ var My3dPlot2 = function (config) {
         //	b: 0,
         //	t: 0
         //},
+        showlegend: false,
         scene: {
             xaxis: {title: config.x_title || ''},
             yaxis: {title: config.y_title || ''},
@@ -429,5 +430,28 @@ My3dPlot2.prototype.generateRandomPoint = function (type) {
 				z:Math.random()*T,
 			}
 		}
+	}
+};
+My3dPlot2.prototype.getPointType = function (x,y,t) {
+	x = parseFloat(x) ;
+	y = parseFloat(y) ;
+	t = parseFloat(t) ;
+    var self = this;
+	var config = self.config ;
+    var a1 = config.x_range[0];
+    var b1 = config.x_range[1];
+    var a2 = config.y_range[0];
+    var b2 = config.y_range[1];
+    var T = config.T;
+	if(isNaN(x)||isNaN(y)||isNaN(t)){
+		return null ;
+	}else if(a1<x&&x<b1&&a2<y&&y<b2&&0<t&&t<T){
+		return 'S_0_T' ;
+	}else if(a1<x&&x<b1&&a2<y&&y<b2&&t<0){
+		return 'S__0' ;
+	}else if(0<t&&t<T){
+		return 'S__G' ;
+	}else{
+		return null ;
 	}
 };
