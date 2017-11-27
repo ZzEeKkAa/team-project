@@ -1,42 +1,87 @@
 $(function () {
 	function sendData(){
 		var bound_cond = [] ;
-		bound_cond = bound_cond.concat($('#table_a0 tbody').map(function(tr){
-				tr = $(tr) ;
-				return {
+		var trs = $('#table_a0 tbody tr[data-x]') ;
+		for(var i=0;i<trs.length;++i){
+			var tr = $(trs[i]) ;
+			bound_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
 					y:0,
-				}
-			}))
-		bound_cond = bound_cond.concat($('#table_a1 tbody').map(function(tr){
-				tr = $(tr) ;
-				return {
+				}) ;
+		}
+		trs = $('#table_a1 tbody tr[data-x]') ;
+		for(var i=0;i<trs.length;++i){
+			var tr = $(trs[i]) ;
+			bound_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
 					y:0,
-				}
-			}))
-		bound_cond = bound_cond.concat($('#table_b0 tbody').map(function(tr){
-				tr = $(tr) ;
-				return {
+				}) ;
+		}
+		trs = $('#table_b0 tbody tr[data-x]') ;
+		for(var i=0;i<trs.length;++i){
+			var tr = $(trs[i]) ;
+			bound_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
 					y:0,
-				}
-			}))
-		bound_cond = bound_cond.concat($('#table_b1 tbody').map(function(tr){
-				tr = $(tr) ;
-				return {
+				}) ;
+		}
+		trs = $('#table_b1 tbody tr[data-x]') ;
+		for(var i=0;i<trs.length;++i){
+			var tr = $(trs[i]) ;
+			bound_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
 					y:0,
-				}
-			}))
+				}) ;
+		}
+		var init_cond = [] ;
+		trs = $('#table_t tbody tr[data-x]') ;
+		for(var i=0;i<trs.length;++i){
+			var tr = $(trs[i]) ;
+			init_cond.push({
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t')),
+					y:0,
+				}) ;
+		}
+		var mod_cond_field = [] ;
+		trs = $('#table_modeling tbody tr[data-type=S_0_T]') ;
+		for(var i=0;i<trs.length;++i){
+			var tr = $(trs[i]) ;
+			mod_cond_field.push({
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t'))
+				}) ;
+		}
+		var mod_cond_zero = [] ;
+		trs = $('#table_modeling tbody tr[data-type=S__0]') ;
+		for(var i=0;i<trs.length;++i){
+			var tr = $(trs[i]) ;
+			mod_cond_zero.push({
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t'))
+				}) ;
+		}
+		var mod_cond_bound = [] ;
+		trs = $('#table_modeling tbody tr[data-type=S__0]') ;
+		for(var i=0;i<trs.length;++i){
+			var tr = $(trs[i]) ;
+			mod_cond_bound.push({
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t'))
+				}) ;
+		}
 		var data = {
 			a0:parseFloat($('#a0-input')[0].value),
 			a1:parseFloat($('#a1-input')[0].value),
@@ -46,47 +91,16 @@ $(function () {
 			nx1:parseFloat($('#N_x1-input')[0].value),
 			nx2:parseFloat($('#N_x2-input')[0].value),
 			nt:parseFloat($('#N_t-input')[0].value),
-			init_cond:$('#table_t tbody').map(function(tr){
-				tr = $(tr) ;
-				return {
-					x1:parseFloat(tr.attr('data-x')),
-					x2:parseFloat(tr.attr('data-y')),
-					t:parseFloat(tr.attr('data-t')),
-					y:0,
-				}
-			}),
+			init_cond:init_cond,
 			bound_cond:bound_cond,
-			mod_cond_field:$('#table_modeling tbody tr[data-type=S_0_T]').map(function(tr){
-				tr = $(tr) ;
-				return {
-					x1:parseFloat(tr.attr('data-x')),
-					x2:parseFloat(tr.attr('data-y')),
-					t:parseFloat(tr.attr('data-t'))
-				}
-			}),
-			mod_cond_zero:$('#table_modeling tbody tr[data-type=S__0]').map(function(tr){
-				tr = $(tr) ;
-				return {
-					x1:parseFloat(tr.attr('data-x')),
-					x2:parseFloat(tr.attr('data-y')),
-					t:parseFloat(tr.attr('data-t'))
-				}
-			}),
-			mod_cond_bound:$('#table_modeling tbody tr[data-type=S__G]').map(function(tr){
-				tr = $(tr) ;
-				return {
-					x1:parseFloat(tr.attr('data-x')),
-					x2:parseFloat(tr.attr('data-y')),
-					t:parseFloat(tr.attr('data-t'))
-				}
-			}),
+			mod_cond_field:mod_cond_field,
+			mod_cond_zero:mod_cond_zero,
+			mod_cond_bound:mod_cond_bound,
 		} ;
 		console.log(data) ;
 		$.post( '/exec/solve', data, function( data ) {
 			console.log(data) ;
-                var html = "<tr data-x='" + p.x + "' data-y='" + p.y + " data-t='" + p.t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
-
-                table.append(html)
+                
             }, "json");
 	}
     $('#ex1').slider({
