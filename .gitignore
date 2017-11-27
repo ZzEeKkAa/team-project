@@ -4,12 +4,13 @@
 #binary
 /team-project*
 
-/cpp/*
-!main.cpp
-!program.h
-!program.cpp
-!matrix.h
-!matrix.cpp
-!f_val.cpp
-!functions.h
-!CMakeLists.txt
+#/cpp/*
+#!main.cpp
+#!program.h
+#!program.cpp
+#!matrix.h
+#!matrix.cpp
+#!f_val.cpp
+#!f_vals.cpp
+#!functions.h
+#!CMakeLists.txt

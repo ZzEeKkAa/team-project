@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/solve.dir/main.cpp.o CMakeFiles/solve.dir/program.cpp.o CMakeFiles/solve.dir/matrix.cpp.o  -o solve 
