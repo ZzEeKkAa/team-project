@@ -2,7 +2,7 @@
 .idea/
 
 #binary
-/team-project*
+/team-project
 
 #/cpp/*
 #!main.cpp
