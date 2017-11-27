@@ -79,7 +79,8 @@ $(function () {
 				return false;
 			}
 			var color = (type==='S_0_T')?'rgb(100,100,200)':(type==='S__0')?'rgb(200,100,100)':'rgb(100,200,100)'
-            var html = "<tr style=\"background-color:"+color+"\" data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
+			var colortr = (type==='S_0_T')?'#b8daff':(type==='S__0')?'#f5c6cb':'#c3e6cb'
+            var html = "<tr style=\"background-color:"+colortr+"\" data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
 
 			var hash = (type+'_'+x+'_'+y+'_'+t) ;
             var node = $($.parseHTML(html));
