@@ -82,7 +82,7 @@ $(function () {
 			}),
 		} ;
 		console.log(data) ;
-		$.post( '/exec/fval', data, function( data ) {
+		$.post( '/exec/solve', data, function( data ) {
 			console.log(data) ;
                 var html = "<tr data-x='" + p.x + "' data-y='" + p.y + " data-t='" + p.t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
 
