@@ -1,14 +1,93 @@
 $(function () {
 	function sendData(){
+		var bound_cond = [] ;
+		bound_cond = bound_cond.concat($('#table_a0 tbody').map(function(tr){
+				tr = $(tr) ;
+				return {
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t')),
+					y:0,
+				}
+			}))
+		bound_cond = bound_cond.concat($('#table_a1 tbody').map(function(tr){
+				tr = $(tr) ;
+				return {
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t')),
+					y:0,
+				}
+			}))
+		bound_cond = bound_cond.concat($('#table_b0 tbody').map(function(tr){
+				tr = $(tr) ;
+				return {
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t')),
+					y:0,
+				}
+			}))
+		bound_cond = bound_cond.concat($('#table_b1 tbody').map(function(tr){
+				tr = $(tr) ;
+				return {
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t')),
+					y:0,
+				}
+			}))
 		var data = {
 			a0:parseFloat($('#a0-input')[0].value),
 			a1:parseFloat($('#a1-input')[0].value),
 			b0:parseFloat($('#b0-input')[0].value),
 			b1:parseFloat($('#b1-input')[0].value),
 			t:parseFloat($('#t-input')[0].value),
-			init_cond:[]
-			bound_cond:[]
+			nx1:parseFloat($('#N_x1-input')[0].value),
+			nx2:parseFloat($('#N_x2-input')[0].value),
+			nt:parseFloat($('#N_t-input')[0].value),
+			init_cond:$('#table_t tbody').map(function(tr){
+				tr = $(tr) ;
+				return {
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t')),
+					y:0,
+				}
+			}),
+			bound_cond:bound_cond,
+			mod_cond_field:$('#table_modeling tbody tr[data-type=S_0_T]').map(function(tr){
+				tr = $(tr) ;
+				return {
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t'))
+				}
+			}),
+			mod_cond_zero:$('#table_modeling tbody tr[data-type=S__0]').map(function(tr){
+				tr = $(tr) ;
+				return {
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t'))
+				}
+			}),
+			mod_cond_bound:$('#table_modeling tbody tr[data-type=S__G]').map(function(tr){
+				tr = $(tr) ;
+				return {
+					x1:parseFloat(tr.attr('data-x')),
+					x2:parseFloat(tr.attr('data-y')),
+					t:parseFloat(tr.attr('data-t'))
+				}
+			}),
 		} ;
+		console.log(data) ;
+		$.post( '/exec/fval', data, function( data ) {
+			console.log(data) ;
+                var html = "<tr data-x='" + p.x + "' data-y='" + p.y + " data-t='" + p.t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
+
+                table.append(html)
+            }, "json");
 	}
     $('#ex1').slider({
         formatter: function (value) {
@@ -57,7 +136,7 @@ $(function () {
             }
 
             $.post( '/exec/fval', {x1: x, x2: y, t: t}, function( data ) {
-                var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
+                var html = "<tr data-x='" + p.x + "' data-y='" + p.y + " data-t='" + p.t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
 
                 table.append(html)
             }, "json");
@@ -91,7 +170,7 @@ $(function () {
 			}
 			var color = (type==='S_0_T')?'rgb(100,100,200)':(type==='S__0')?'rgb(200,100,100)':'rgb(100,200,100)'
 			var colortr = (type==='S_0_T')?'#b8daff':(type==='S__0')?'#f5c6cb':'#c3e6cb'
-            var html = "<tr style=\"background-color:"+colortr+"\" data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
+            var html = "<tr style=\"background-color:"+colortr+"\" data-type='" + type + "' data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
 
 			var hash = (type+'_'+x+'_'+y+'_'+t) ;
             var node = $($.parseHTML(html));
@@ -146,7 +225,7 @@ $(function () {
         var myPlot1 = new My3dPlot2({element: 'modeling_div', x_range:x_range,y_range:y_range,T:$('#t-input')[0].value,x_title: 'X', y_title: 'Y', z_title:'T'});
     };
     modelingMagic(x_range,y_range);
-
+	$('#solve').click(sendData)
     /*Plotly.newPlot('myDiv', [{
       y: [1, 2, 1],
       line: { shape: 'spline' }
