@@ -7,4 +7,4 @@ handlers:
 #  make_path: "make"
   run_cmake: false
   target: "win32"
-  make_path: "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-make.exe"
+  make_path: "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin\\mingw32-make.exe"
