@@ -47,8 +47,8 @@ func Init(config *viper.Viper) (*echo.Echo, error) {
 			return err
 		}
 		io.Copy(ctx.Response(), f)
+
 		return nil
-		//return ctx.Render(http.StatusOK, "index.html", nil)
 	})
 
 	e.GET("/exec/build", build)

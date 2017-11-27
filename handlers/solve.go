@@ -23,6 +23,11 @@ type valuePoint struct {
 	T  float64 `json:"t"`
 	Y  float64 `json:"y"`
 }
+type jsPoints struct {
+	X []float64 `json:"x"`
+	Y []float64 `json:"y"`
+	Z []float64 `json:"z"`
+}
 
 func solve(ctx echo.Context) error {
 	var req struct {
@@ -36,6 +41,9 @@ func solve(ctx echo.Context) error {
 		A1                      float64      `json:"a1"`
 		B1                      float64      `json:"b1"`
 		T                       float64      `json:"t"`
+		NX1                     int          `json:"nx1"`
+		NX2                     int          `json:"nx2"`
+		NT                      int          `json:"nt"`
 	}
 
 	body, err := ioutil.ReadAll(ctx.Request().Body)
@@ -76,7 +84,7 @@ func solve(ctx echo.Context) error {
 		fmt.Fprintf(fin, "%f\n%f\n%f\n", p.X1, p.X2, p.T)
 	}
 	fmt.Fprintf(fin, "%f\n%f\n%f\n%f\n%f\n", req.A0, req.B0, req.A1, req.B1, req.T)
-	fmt.Fprint(fin, "20\n20\n20\n")
+	fmt.Fprintf(fin, "%f\n%f\n%f\n", req.NX1, req.NX2, req.NT)
 
 	fin.Close()
 
@@ -93,8 +101,27 @@ func solve(ctx echo.Context) error {
 		return err
 	}
 
-	var res struct {
-		Res []valuePoint `json:"res"`
+	var res []jsPoints
+
+	fout, err := os.Open("./cpp/out.txt")
+	if err != nil {
+		log.Error(err)
+
+		return err
+	}
+
+	for t := 0; t < req.NT; t++ {
+		var p jsPoints
+		for x2 := 0; x2 < req.NX2; x2++ {
+			for x1 := 0; x1 < req.NX1; x1++ {
+				var f float64
+				fmt.Fscanf(fout, "%f", &f)
+				p.X = append(p.X, req.A0+(req.B0-req.A0)*float64(x1))
+				p.Y = append(p.Y, req.A1+(req.B1-req.A1)*float64(x2))
+				p.Z = append(p.Z, f)
+			}
+		}
+		res = append(res, p)
 	}
 
 	jRes, err := json.Marshal(res)

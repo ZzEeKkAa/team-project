@@ -319,15 +319,17 @@ void Program::write_out_result(ofstream& ofs)
     double	h2= (x2_intr[1] - x2_intr[0]) / N_x2;
     double h3= (t_intr[1] - t_intr[0]) / N_t;
 
-    for(int i=0;i<N_x1;++i)
-        for(int j=0;j<N_x2;++j)
-            for (int k = 0; k < N_t; ++k)
+    for (int k = 0; k < N_t; ++k)
+    {
+        for (int j = 0; j<N_x2; ++j)
+            for (int i = 0; i < N_x1; ++i)
             {
                 s[0] = x1_intr[0] + i*h1;
-                s[1]= x2_intr[0] + i*h2;
-                s[2]= t_intr[0] + i*h3;
+                s[1] = x2_intr[0] + i*h2;
+                s[2] = t_intr[0] + i*h3;
 
-                ofs << y(s) << endl;
+                ofs << y(s) << " ";
             }
-
+        ofs << endl;
+    }
 }
