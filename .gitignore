@@ -6,6 +6,10 @@
 
 /cpp/*
 !main.cpp
+!program.h
+!program.cpp
+!matrix.h
+!matrix.cpp
 !f_val.cpp
 !functions.h
 !CMakeLists.txt

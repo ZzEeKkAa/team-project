@@ -1,11 +1,16 @@
 #include <iostream>
+#include <fstream>
 
-#include "functions.h"
+//#include "functions.h"
+#include "program.h"
 
 using namespace std;
 
 int main(){
-    cout<<f(0,1,1)<<endl;
+    ifstream ifs("in.txt");
+    ofstream ofs("out.txt");
+
+    Program P(ifs,ofs);
 
     return 0;
 }

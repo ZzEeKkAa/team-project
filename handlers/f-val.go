@@ -3,12 +3,11 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
-
-	"fmt"
 
 	"github.com/labstack/echo"
 	log "github.com/sirupsen/logrus"
@@ -28,7 +27,12 @@ func fval(ctx echo.Context) error {
 
 	buf := new(bytes.Buffer)
 
-	cmd := exec.Command("./cpp/fval", X, Y, T)
+	cmdS := "./cpp/fval"
+	if target == "win32" {
+		cmdS += ".exe"
+	}
+
+	cmd := exec.Command(cmdS, X, Y, T)
 	cmd.Stdout = buf
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
