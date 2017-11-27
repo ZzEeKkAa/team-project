@@ -11,15 +11,41 @@ $(function () {
     var d3 = Plotly.d3;
     // var myPlot = document.getElementById('myDiv');
 
-    var x_range = [parseFloat($('#a0-input')[0].value), parseFloat($('#a1-input')[0].value)];
-    var y_range = [parseFloat($('#b0-input')[0].value), parseFloat($('#b1-input')[0].value)];
+    var a0 = parseFloat($('#a0-input')[0].value);
+    var a1 = parseFloat($('#a1-input')[0].value);
+    var b0 = parseFloat($('#b0-input')[0].value);
+    var b1 = parseFloat($('#b1-input')[0].value);
+
+    var x_range = [a0, a1];
+    var y_range = [b0, b1];
     var t_range = [0, parseFloat($('#t-input')[0].value)];
 
     var magic = function (st, x_range, y_range) {
         var table = $('#table_'+st+' tbody');
         var myPlot = new MyPlot1({element: st+'div', x_range: x_range, y_range: y_range});
         myPlot.on('addPoint', function (p) {
-            $.post( '/exec/fval', {x1: p.x, x2: p.y, t: 0}, function( data ) {
+            var x = p.x;
+            var y = p.y;
+            var t = 0;
+            if(st=="a0"){
+                t = p.x;
+                x = a0;
+                y = p.y;
+            } else if(st=="a1"){
+                t = p.x;
+                x = a1;
+                y = p.y;
+            } else if(st=="b0"){
+                t = p.x;
+                x = p.y;
+                y = b0;
+            } else if(st=="b1"){
+                t = p.x;
+                x = p.y;
+                y = b1;
+            }
+
+            $.post( '/exec/fval', {x1: x, x2: y, t: t}, function( data ) {
                 var html = "<tr data-x='" + p.x + "' data-y='" + p.y + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
 
                 table.append(html)
