@@ -68,24 +68,19 @@ $(function () {
     var modelingMagic = function (x_range, y_range) {
         var table = $('#table_modeling tbody');
         var addButton = $('#modeling_add');
-        var generate1Button = $('#modeling_gen1');
-        var generate2Button = $('#modeling_gen2');
-        var xInput = $('#add-x').next()[0];
-        var yInput = $('#add-y').next()[0];
-        var tInput = $('#add-t').next()[0];
-
-        addButton.click(function () {
-            x = xInput.value;
-            y = yInput.value;
-            t = tInput.value;
-
-            if(x=="" || y=="" || t==""){
-                return;
-            }
-
+        var generateSmButton = $('#modeling_Sm');
+        var generateSm0Button = $('#modeling_Sm0');
+        var generateSmGButton = $('#modeling_SmG');
+		
+		function addPoint(x,y,t){
+			var type = myPlot1.getPointType(x,y,t) ;
+			if(!type){
+				console.log('point('+x+','+y+','+t+') has not a type') ;
+				return false;
+			}
             var html = "<tr data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
 
-			var hash = (x+'_'+y+'_'+t) ;
+			var hash = (type+'_'+x+'_'+y+'_'+t) ;
             var node = $($.parseHTML(html));
             node.on("click",function () {
                 var tr = $(this);
@@ -99,17 +94,40 @@ $(function () {
 
                 tr.remove();
             });
-
+			var color = (type==='S_0_T')?'rgb(100,100,200)':(type==='S__0')?'rgb(200,100,100)':'rgb(100,200,100)'
             table.append(node);
-            xInput.value="";
-            yInput.value="";
-            tInput.value="";
 			
 			x = parseFloat(x) ;
 			y = parseFloat(y) ;
 			t = parseFloat(t) ;
-			if(!isNaN(x)&&!isNaN(y)&&!isNaN(t)){
-				myPlot1.addPoints([{x:x,z:t,y:y,color:'rgb(100,100,200)',hash:hash}]) ;
+			myPlot1.addPoints([{x:x,z:t,y:y,color:color,hash:hash,type:type}]) ;
+			return true ;
+		}
+		generateSmButton.click(function(){
+			var p = myPlot1.generateRandomPoint('S_0_T') ;
+			addPoint(p.x,p.y,p.z) ;
+		})
+		generateSm0Button.click(function(){
+			var p = myPlot1.generateRandomPoint('S__0') ;
+			addPoint(p.x,p.y,p.z) ;
+		})
+		generateSmGButton.click(function(){
+			var p = myPlot1.generateRandomPoint('S__G') ;
+			addPoint(p.x,p.y,p.z) ;
+		})
+		
+        var xInput = $('#add-x').next()[0];
+        var yInput = $('#add-y').next()[0];
+        var tInput = $('#add-t').next()[0];
+
+        addButton.click(function () {
+            x = xInput.value;
+            y = yInput.value;
+            t = tInput.value;
+			if(addPoint(x,y,t)){
+				xInput.value="";
+				yInput.value="";
+				tInput.value="";
 			}
         });
 
