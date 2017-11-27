@@ -78,7 +78,8 @@ $(function () {
 				console.log('point('+x+','+y+','+t+') has not a type') ;
 				return false;
 			}
-            var html = "<tr data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
+			var color = (type==='S_0_T')?'rgb(100,100,200)':(type==='S__0')?'rgb(200,100,100)':'rgb(100,200,100)'
+            var html = "<tr style=\"background-color:"+color+"\" data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + x + "</td><td>" + y + "</td><td>" + t + "</td></tr>";
 
 			var hash = (type+'_'+x+'_'+y+'_'+t) ;
             var node = $($.parseHTML(html));
@@ -94,7 +95,6 @@ $(function () {
 
                 tr.remove();
             });
-			var color = (type==='S_0_T')?'rgb(100,100,200)':(type==='S__0')?'rgb(200,100,100)':'rgb(100,200,100)'
             table.append(node);
 			
 			x = parseFloat(x) ;
