@@ -1,4 +1,15 @@
 $(function () {
+	function sendData(){
+		var data = {
+			a0:parseFloat($('#a0-input')[0].value),
+			a1:parseFloat($('#a1-input')[0].value),
+			b0:parseFloat($('#b0-input')[0].value),
+			b1:parseFloat($('#b1-input')[0].value),
+			t:parseFloat($('#t-input')[0].value),
+			init_cond:[]
+			bound_cond:[]
+		} ;
+	}
     $('#ex1').slider({
         formatter: function (value) {
             return 'Current value: ' + value;
