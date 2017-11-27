@@ -80,7 +80,11 @@ func solve(ctx echo.Context) error {
 
 	fin.Close()
 
-	cmd := exec.Command("./cpp/solve")
+	cmdS := "./cpp/solve"
+	if target == "win32" {
+		cmdS += ".exe"
+	}
+	cmd := exec.Command(cmdS)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {

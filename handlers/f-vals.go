@@ -40,7 +40,11 @@ func fvals(ctx echo.Context) error {
 		args = append(args, fmt.Sprintf("%f", p.X), fmt.Sprintf("%f", p.Y), fmt.Sprintf("%f", p.T))
 	}
 
-	cmd := exec.Command("./cpp/fvals", args...)
+	cmdS := "./cpp/fvals"
+	if target == "win32" {
+		cmdS += ".exe"
+	}
+	cmd := exec.Command(cmdS, args...)
 	cmd.Stdout = buf
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {

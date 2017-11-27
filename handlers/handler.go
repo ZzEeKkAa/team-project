@@ -19,10 +19,18 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-var assetsPath string
+var (
+	assetsPath string
+	target     string
+	makePath   string
+	runCMake   bool
+)
 
 func Init(config *viper.Viper) (*echo.Echo, error) {
 	assetsPath = config.GetString("assets")
+	target = config.GetString("target")
+	makePath = config.GetString("make_path")
+	runCMake = config.GetBool("run_cmake")
 
 	e := echo.New()
 	e.Renderer = &Template{templates: template.Must(template.ParseGlob(path.Join(assetsPath, "*.html")))}

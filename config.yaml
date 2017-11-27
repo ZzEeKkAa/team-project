@@ -1,10 +1,10 @@
 address: ":8080"
 
-#target: "win32"
-#make_path: "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-make.exe"
-
-target: "linux"
-make_path: "make"
-
 handlers:
   assets: ./assets/
+  run_cmake: true
+  target: "linux"
+  make_path: "make"
+#  run_cmake: false
+#  target: "win32"
+#  make_path: "C:\Program Files (x86)\CodeBlocks\MinGW\bin\mingw32-make.exe"

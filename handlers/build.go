@@ -7,15 +7,17 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func build(ctx echo.Context) error {
-	cmd := exec.Command("cmake", "-B./cpp", "-H./cpp")
-	if err := cmd.Run(); err != nil {
-		log.Println(err)
+func build(_ echo.Context) error {
+	if runCMake {
+		cmd := exec.Command("cmake", "-B./cpp", "-H./cpp")
+		if err := cmd.Run(); err != nil {
+			log.Println(err)
 
-		return err
+			return err
+		}
 	}
 
-	cmd = exec.Command("make", "-C./cpp")
+	cmd := exec.Command(makePath, "-C./cpp")
 	if err := cmd.Run(); err != nil {
 		log.Println(err)
 

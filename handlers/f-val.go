@@ -27,7 +27,12 @@ func fval(ctx echo.Context) error {
 
 	buf := new(bytes.Buffer)
 
-	cmd := exec.Command("./cpp/fval", X, Y, T)
+	cmdS := "./cpp/fval"
+	if target == "win32" {
+		cmdS += ".exe"
+	}
+
+	cmd := exec.Command(cmdS, X, Y, T)
 	cmd.Stdout = buf
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
