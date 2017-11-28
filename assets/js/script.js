@@ -130,8 +130,13 @@ $(function () {
 		console.log(slider_value) ;
 		clearTimeout(renderTimeout) ;
 		if(!response_data) return ;
+		console.log('plotData 1') ;
 		var ind = Math.floor(response_data.length*(slider_value/10))
+		console.log('plotData 2') ;
+		console.log(ind) ;
 		renderTimeout = setTimeout(function(){
+			console.log('plotData 3') ;
+			console.log(response_data[ind]) ;
 			my3dPlot1.draw(response_data[ind]) ;
 		},1000)
 	}
