@@ -117,7 +117,11 @@ $(function () {
     });
 
     // TODO: rewrite for updative table
+    $('#table_t0').editableTableWidget();
     $('#table_a0').editableTableWidget();
+    $('#table_a1').editableTableWidget();
+    $('#table_b0').editableTableWidget();
+    $('#table_b1').editableTableWidget();
 
     var d3 = Plotly.d3;
     // var myPlot = document.getElementById('myDiv');
@@ -159,8 +163,8 @@ $(function () {
             $.post( '/exec/fval', {x1: x, x2: y, t: t}, function( data ) {
                 var html = "<tr data-x='" + p.x + "' data-y='" + p.y + " data-t='" + p.t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
                 var node = $($.parseHTML(html));
+                node.find('td.epsilon-error').prop('tabindex', 1);
                 table.append(node);
-                table.editableTableWidget();
             }, "json");
         });
         myPlot.on('removePoint', function (resp) {
