@@ -118,9 +118,9 @@ var My3dPlot1 = function (element, config) {
     Plotly.newPlot(self.gd, [{
         opacity: 0.8,
         color: 'rgb(300,100,200)',
-        x: [0, 1, 0, 1],
-        y: [0, 0, 1, 1],
-        z: [0, 1, 1, 2],
+        x: [],//[0, 1, 0, 1],
+        y: [],//[0, 0, 1, 1],
+        z: [],//[0, 1, 1, 2],
         type: 'mesh3d',
     }], {
         //margin: {

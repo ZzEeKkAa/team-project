@@ -124,6 +124,7 @@ $(function () {
 	var renderTimeout = null ;
 	function plotData(value){
 		clearTimeout(renderTimeout) ;
+		if(!response_data) return ;
 		var ind = Math.floor(response_data.length*(value/10))
 		renderTimeout = setTimeout(function(){
 			my3dPlot1.draw(response_data[ind]) ;
