@@ -11,7 +11,6 @@ $(function () {
 					t:parseFloat(tr.attr('data-t')),
 					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
-				}) ;
 		}
 		trs = $('#table_a1 tbody tr[data-x]') ;
 		for(var i=0;i<trs.length;++i){
