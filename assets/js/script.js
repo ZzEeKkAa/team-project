@@ -163,7 +163,7 @@ $(function () {
             }
 
             $.post( '/exec/fval', {x1: x, x2: y, t: t}, function( data ) {
-                var html = "<tr data-x='" + x + "' data-y='" + y + " data-t='" + t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
+                var html = "<tr data-x='" + x + "' data-y='" + y + "' data-t='" + t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
                 var node = $($.parseHTML(html));
                 table.append(node);
                 table.editableTableWidget();
