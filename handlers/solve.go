@@ -141,6 +141,7 @@ func solve(ctx echo.Context) error {
 				p.Y = append(p.Y, req.A1+(req.B1-req.A1)*float64(x2))
 				p.Z = append(p.Z, f)
 			}
+			fmt.Fscanln(fout)
 		}
 		res = append(res, p)
 	}
