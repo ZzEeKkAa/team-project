@@ -1,4 +1,5 @@
 $(function () {
+	var response_data = null ;
 	function sendData(){
 		var bound_cond = [] ;
 		var trs = $('#table_a0 tbody tr[data-x]') ;
@@ -112,13 +113,24 @@ $(function () {
 			async: true ,
 			success: function(data) {
 				console.log(data) ;
+				response_data = data ;
+				$('#ex1').slider({
+					formatter: plotData
+				});
+				plotData() ;
 			}
 		});
 	}
+	var renderTimeout = null ;
+	function plotData(value){
+		clearTimeout(renderTimeout) ;
+		var ind = Math.floor(response_data.length*(value/10))
+		renderTimeout = setTimeout(function(){
+			my3dPlot1.draw(response_data[ind]) ;
+		},1000)
+	}
     $('#ex1').slider({
-        formatter: function (value) {
-            return 'Current value: ' + value;
-        }
+        formatter: plotData
     });
 
     // TODO: rewrite for updative table
@@ -257,6 +269,7 @@ $(function () {
     };
     modelingMagic(x_range,y_range);
 	$('#solve').click(sendData)
+    var my3dPlot1 = new My3dPlot1('result_plot',{x_title: 'X', y_title: 'Y', z_title:'T'});
     /*Plotly.newPlot('myDiv', [{
       y: [1, 2, 1],
       line: { shape: 'spline' }
