@@ -9,7 +9,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 				}) ;
 		}
@@ -21,7 +21,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 		}
 		trs = $('#table_b0 tbody tr[data-x]') ;
@@ -32,7 +32,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 		}
 		trs = $('#table_b1 tbody tr[data-x]') ;
@@ -43,7 +43,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 		}
 		var init_cond = [] ;
@@ -55,7 +55,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 		}
 		var mod_cond_field = [] ;
@@ -167,7 +167,7 @@ $(function () {
             }
 
             $.post( '/exec/fval', {x1: x, x2: y, t: t}, function( data ) {
-                var html = "<tr data-x='" + p.x + "' data-y='" + p.y + " data-t='" + p.t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
+                var html = "<tr data-x='" + x + "' data-y='" + y + " data-t='" + t + "'><td>" + p.x + "</td><td>" + p.y + "</td><td>"+data.res+"</td><td class=\"epsilon-error\">0</td></tr>";
                 var node = $($.parseHTML(html));
                 node.find('td.epsilon-error').prop('tabindex', 1);
                 table.append(node);
