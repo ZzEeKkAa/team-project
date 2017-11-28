@@ -1,5 +1,7 @@
-$(function () {
+
 	var response_data = null ;
+	var my3dPlot1 = null ;
+$(function () {
 	function sendData(){
 		var bound_cond = [] ;
 		var trs = $('#table_a0 tbody tr[data-x]') ;
@@ -276,7 +278,7 @@ $(function () {
     };
     modelingMagic(x_range,y_range);
 	$('#solve').click(sendData)
-    var my3dPlot1 = new My3dPlot1('result_plot',{x_title: 'X', y_title: 'Y', z_title:'T'});
+    my3dPlot1 = new My3dPlot1('result_plot',{x_title: 'X', y_title: 'Y', z_title:'T'});
     /*Plotly.newPlot('myDiv', [{
       y: [1, 2, 1],
       line: { shape: 'spline' }
