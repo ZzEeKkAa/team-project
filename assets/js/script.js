@@ -47,7 +47,7 @@ $(function () {
 				}) ;
 		}
 		var init_cond = [] ;
-		trs = $('#table_t tbody tr[data-x]') ;
+		trs = $('#table_t0 tbody tr[data-x]') ;
 		for(var i=0;i<trs.length;++i){
 			var tr = $(trs[i]) ;
 			var tds = tr.find('td') ;
