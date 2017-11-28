@@ -142,7 +142,8 @@ $(function () {
 	}
     $('#ex1').slider({
         formatter: function(value){
-			slider_value = parseFloat(value) ;
+			value = parseFloat(value) ;
+			if(!value) return ;
 			plotData() ;
 		}
     });
