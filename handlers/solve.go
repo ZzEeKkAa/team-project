@@ -131,10 +131,10 @@ func solve(ctx echo.Context) error {
 		return err
 	}
 
-	for t := 0; t < req.NT; t++ {
+	for t := 0; t <= req.NT; t++ {
 		var p jsPoints
-		for x2 := 0; x2 < req.NX2; x2++ {
-			for x1 := 0; x1 < req.NX1; x1++ {
+		for x2 := 0; x2 <= req.NX2; x2++ {
+			for x1 := 0; x1 <= req.NX1; x1++ {
 				var f float64
 				fmt.Fscanf(fout, "%f", &f)
 				p.X = append(p.X, req.A0+(req.B0-req.A0)*float64(x1))
