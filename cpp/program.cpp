@@ -25,7 +25,8 @@ void Program::read_info(ifstream& ifs)
 
     ifs >> num_g_f;
 
-    int n, n1;
+    int n;
+    double n1;
 
     ifs >> n;
 
@@ -111,19 +112,19 @@ void Program::read_info(ifstream& ifs)
         }
     }
 
-    ifs >> n;
+    ifs >> n1;
     x1_intr.push_back(double(n1));
-    ifs >> n;
+    ifs >> n1;
     x1_intr.push_back(double(n1));
 
 
-    ifs >> n;
+    ifs >> n1;
     x2_intr.push_back(double(n1));
-    ifs >> n;
+    ifs >> n1;
     x2_intr.push_back(double(n1));
 
     t_intr.push_back(0.0);
-    ifs >> n;
+    ifs >> n1;
     t_intr.push_back(double(n1));
 
     ifs >> n;
@@ -135,7 +136,11 @@ void Program::read_info(ifstream& ifs)
     ifs >> n;
     N_t = n;
 
-    int x_,h;
+    cout<<"N_x1 = "<<N_x1<<endl;
+    cout<<"N_x2 = "<<N_x2<<endl;
+    cout<<"N_t = "<<N_t<<endl;
+
+    double x_,h;
 
     h = (x1_intr[1] - x1_intr[0]) / N_x1;
 
@@ -216,7 +221,7 @@ void Program::make_matrix()
 
     A = Matrix(A_);
 
-    A.display_matrix();
+    //A.display_matrix();
 }
 
 double Program::G(vector<double> s, vector<double> s_)
@@ -232,7 +237,7 @@ double Program::Heaviside_func(double x)
 
 void Program::make_Y()
 {
-    std::cout <<"make_Y"<<std::endl;
+//    std::cout <<"make_Y"<<std::endl;
     for (int i = 0; i < L0 + LG; ++i)
         Y.push_back(0.0);
 

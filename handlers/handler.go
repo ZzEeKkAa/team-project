@@ -23,6 +23,7 @@ var (
 	assetsPath string
 	target     string
 	makePath   string
+	builder    string
 	runCMake   bool
 )
 
@@ -31,6 +32,7 @@ func Init(config *viper.Viper) (*echo.Echo, error) {
 	target = config.GetString("target")
 	makePath = config.GetString("make_path")
 	runCMake = config.GetBool("run_cmake")
+	builder = config.GetString("builder")
 
 	e := echo.New()
 	e.Renderer = &Template{templates: template.Must(template.ParseGlob(path.Join(assetsPath, "*.html")))}

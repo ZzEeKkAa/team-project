@@ -70,7 +70,7 @@ func solve(ctx echo.Context) error {
 		return err
 	}
 
-	fmt.Fprintf(fin, "0\n%d\n", len(req.InitialConditions))
+	fmt.Fprintf(fin, "1\n%d\n", len(req.InitialConditions))
 	for _, p := range req.InitialConditions {
 		fmt.Fprintf(fin, "%f %f %f %f\n", p.X1, p.X2, p.T, p.Y)
 	}
@@ -79,7 +79,7 @@ func solve(ctx echo.Context) error {
 		fmt.Fprintf(fin, "%f %f %f %f\n", p.X1, p.X2, p.T, p.Y)
 	}
 
-	fmt.Fprintf(fin, "0\n%d\n", len(req.ModelingConditionsField))
+	fmt.Fprintf(fin, "1\n%d\n", len(req.ModelingConditionsField))
 	for _, p := range req.ModelingConditionsField {
 		fmt.Fprintf(fin, "%f %f %f\n", p.X1, p.X2, p.T)
 	}
@@ -96,13 +96,18 @@ func solve(ctx echo.Context) error {
 
 	fin.Close()
 
-	return nil
-
 	cmdS := "./cpp/solve"
+	var args []string
+
+	if builder == "octave" {
+		cmdS = "octave"
+		args = []string{"./octave/alg.m"}
+	}
+
 	if target == "win32" {
 		cmdS += ".exe"
 	}
-	cmd := exec.Command(cmdS)
+	cmd := exec.Command(cmdS, args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
@@ -115,6 +120,12 @@ func solve(ctx echo.Context) error {
 
 	fout, err := os.Open("./cpp/out.txt")
 	if err != nil {
+		log.Error(err)
+
+		return err
+	}
+
+	if _, err := fmt.Fscanf(fout, "%d \n %d \n %d \n", &req.NX1, &req.NX2, &req.NT); err != nil {
 		log.Error(err)
 
 		return err

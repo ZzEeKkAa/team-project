@@ -13,7 +13,7 @@ namespace funcs {
     double G(double, double, double);
 
     double f(double x1, double x2, double t) {
-        return t * t - x1 * x1 * x1 + x2 * x2;
+        return 0.5 * t * t - x1 * x1 + x2 * x2;
     }
 
     double u(double x1, double x2, double t) {
