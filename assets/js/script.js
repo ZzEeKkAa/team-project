@@ -4,52 +4,58 @@ $(function () {
 		var trs = $('#table_a0 tbody tr[data-x]') ;
 		for(var i=0;i<trs.length;++i){
 			var tr = $(trs[i]) ;
+			var tds = tr.find('td') ;
 			bound_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:0,
+					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+				}) ;
 				}) ;
 		}
 		trs = $('#table_a1 tbody tr[data-x]') ;
 		for(var i=0;i<trs.length;++i){
 			var tr = $(trs[i]) ;
+			var tds = tr.find('td') ;
 			bound_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:0,
+					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
 				}) ;
 		}
 		trs = $('#table_b0 tbody tr[data-x]') ;
 		for(var i=0;i<trs.length;++i){
 			var tr = $(trs[i]) ;
+			var tds = tr.find('td') ;
 			bound_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:0,
+					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
 				}) ;
 		}
 		trs = $('#table_b1 tbody tr[data-x]') ;
 		for(var i=0;i<trs.length;++i){
 			var tr = $(trs[i]) ;
+			var tds = tr.find('td') ;
 			bound_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:0,
+					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
 				}) ;
 		}
 		var init_cond = [] ;
 		trs = $('#table_t tbody tr[data-x]') ;
 		for(var i=0;i<trs.length;++i){
 			var tr = $(trs[i]) ;
+			var tds = tr.find('td') ;
 			init_cond.push({
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:0,
+					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
 				}) ;
 		}
 		var mod_cond_field = [] ;
