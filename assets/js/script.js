@@ -131,7 +131,8 @@ $(function () {
 		clearTimeout(renderTimeout) ;
 		if(!response_data) return ;
 		console.log('plotData 1') ;
-		var ind = Math.floor(response_data.length*(slider_value/10))
+		console.log(parseFloat($("#ex1").val())) ;
+		var ind = Math.floor(response_data.length*(parseFloat($("#ex1").val())/10.))
 		console.log('plotData 2') ;
 		console.log(ind) ;
 		renderTimeout = setTimeout(function(){
