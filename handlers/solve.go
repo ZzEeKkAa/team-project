@@ -70,33 +70,33 @@ func solve(ctx echo.Context) error {
 		return err
 	}
 
-	return nil
-
 	fmt.Fprintf(fin, "0\n%d\n", len(req.InitialConditions))
 	for _, p := range req.InitialConditions {
-		fmt.Fprintf(fin, "%f\n%f\n%f\n%f\n", p.X1, p.X2, p.T, p.Y)
+		fmt.Fprintf(fin, "%f %f %f %f\n", p.X1, p.X2, p.T, p.Y)
 	}
 	fmt.Fprintf(fin, "%d\n", len(req.BoundaryConditions))
 	for _, p := range req.BoundaryConditions {
-		fmt.Fprintf(fin, "%f\n%f\n%f\n%f\n", p.X1, p.X2, p.T, p.Y)
+		fmt.Fprintf(fin, "%f %f %f %f\n", p.X1, p.X2, p.T, p.Y)
 	}
 
 	fmt.Fprintf(fin, "0\n%d\n", len(req.ModelingConditionsField))
 	for _, p := range req.ModelingConditionsField {
-		fmt.Fprintf(fin, "%f\n%f\n%f\n", p.X1, p.X2, p.T)
+		fmt.Fprintf(fin, "%f %f %f\n", p.X1, p.X2, p.T)
 	}
 	fmt.Fprintf(fin, "%d\n", len(req.ModelingConditionsZero))
 	for _, p := range req.ModelingConditionsZero {
-		fmt.Fprintf(fin, "%f\n%f\n%f\n", p.X1, p.X2, p.T)
+		fmt.Fprintf(fin, "%f %f %f\n", p.X1, p.X2, p.T)
 	}
 	fmt.Fprintf(fin, "%d\n", len(req.ModelingConditionsBound))
 	for _, p := range req.ModelingConditionsBound {
-		fmt.Fprintf(fin, "%f\n%f\n%f\n", p.X1, p.X2, p.T)
+		fmt.Fprintf(fin, "%f %f %f\n", p.X1, p.X2, p.T)
 	}
 	fmt.Fprintf(fin, "%f\n%f\n%f\n%f\n%f\n", req.A0, req.B0, req.A1, req.B1, req.T)
 	fmt.Fprintf(fin, "%d\n%d\n%d\n", req.NX1, req.NX2, req.NT)
 
 	fin.Close()
+
+	return nil
 
 	cmdS := "./cpp/solve"
 	if target == "win32" {
