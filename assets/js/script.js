@@ -98,10 +98,17 @@ $(function () {
 			mod_cond_bound:mod_cond_bound,
 		} ;
 		console.log(data) ;
-		$.post( '/exec/solve', data, function( data ) {
-			console.log(data) ;
-                
-            }, "json");
+		$.ajax({
+			url: '/exec/solve',
+			type: 'POST',
+			data: JSON.stringify(data),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			async: false,
+			success: function(data) {
+				console.log(data) ;
+			}
+		});
 	}
     $('#ex1').slider({
         formatter: function (value) {
