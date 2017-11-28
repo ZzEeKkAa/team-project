@@ -122,18 +122,22 @@ $(function () {
 		});
 	}
 	var renderTimeout = null ;
-	function plotData(value){
+	var slider_value = 0 ;
+	function plotData(){
 		console.log('plotData') ;
-		console.log(value) ;
+		console.log(slider_value) ;
 		clearTimeout(renderTimeout) ;
 		if(!response_data) return ;
-		var ind = Math.floor(response_data.length*(value/10))
+		var ind = Math.floor(response_data.length*(slider_value/10))
 		renderTimeout = setTimeout(function(){
 			my3dPlot1.draw(response_data[ind]) ;
 		},1000)
 	}
     $('#ex1').slider({
-        formatter: plotData
+        formatter: function(value){
+			slider_value = parseFloat(value) ;
+			plotData() ;
+		}
     });
 
     // TODO: rewrite for updative table
