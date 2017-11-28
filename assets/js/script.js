@@ -123,6 +123,8 @@ $(function () {
 	}
 	var renderTimeout = null ;
 	function plotData(value){
+		console.log('plotData') ;
+		console.log(value) ;
 		clearTimeout(renderTimeout) ;
 		if(!response_data) return ;
 		var ind = Math.floor(response_data.length*(value/10))

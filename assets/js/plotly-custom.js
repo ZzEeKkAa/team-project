@@ -156,7 +156,7 @@ My3dPlot1.prototype.draw = function (points) {
     Plotly.addTraces(self.gd, {
         opacity: 0.8,
         color: 'rgb(300,100,200)',
-        x: points.map(function (p) {
+        /*x: points.map(function (p) {
             return p.x
         }),
         y: points.map(function (p) {
@@ -164,7 +164,10 @@ My3dPlot1.prototype.draw = function (points) {
         }),
         z: points.map(function (p) {
             return p.z
-        }),
+        }),*/
+		x:points.x,
+		y:points.y,
+		z:points.z,
         type: 'mesh3d',
     });
 };
