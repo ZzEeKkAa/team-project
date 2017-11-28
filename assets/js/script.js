@@ -110,7 +110,7 @@ $(function () {
 			data: JSON.stringify(data),
 			contentType: 'application/json; charset=utf-8',
 			dataType: 'json',
-			async: true,
+			async: true ,
 			success: function(data) {
 				console.log(data) ;
 			}
