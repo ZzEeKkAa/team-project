@@ -53,7 +53,15 @@ func solve(ctx echo.Context) error {
 		return err
 	}
 
-	json.Unmarshal(body, &req)
+	fmt.Print(string(body))
+
+	if err := json.Unmarshal(body, &req); err != nil {
+		log.Error(err)
+
+		return err
+	}
+
+	fmt.Println(req)
 
 	fin, err := os.Create("./cpp/in.txt")
 	if err != nil {
@@ -61,6 +69,8 @@ func solve(ctx echo.Context) error {
 
 		return err
 	}
+
+	return nil
 
 	fmt.Fprintf(fin, "0\n%d\n", len(req.InitialConditions))
 	for _, p := range req.InitialConditions {
@@ -84,7 +94,7 @@ func solve(ctx echo.Context) error {
 		fmt.Fprintf(fin, "%f\n%f\n%f\n", p.X1, p.X2, p.T)
 	}
 	fmt.Fprintf(fin, "%f\n%f\n%f\n%f\n%f\n", req.A0, req.B0, req.A1, req.B1, req.T)
-	fmt.Fprintf(fin, "%f\n%f\n%f\n", req.NX1, req.NX2, req.NT)
+	fmt.Fprintf(fin, "%d\n%d\n%d\n", req.NX1, req.NX2, req.NT)
 
 	fin.Close()
 
