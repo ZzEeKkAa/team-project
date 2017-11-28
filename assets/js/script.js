@@ -9,7 +9,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 				}) ;
 		}
@@ -21,7 +21,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 		}
 		trs = $('#table_b0 tbody tr[data-x]') ;
@@ -32,7 +32,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 		}
 		trs = $('#table_b1 tbody tr[data-x]') ;
@@ -43,7 +43,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 		}
 		var init_cond = [] ;
@@ -55,7 +55,7 @@ $(function () {
 					x1:parseFloat(tr.attr('data-x')),
 					x2:parseFloat(tr.attr('data-y')),
 					t:parseFloat(tr.attr('data-t')),
-					y:parseFloat($(tds[3]).text())+parseFloat($(tds[4]).text()),
+					y:parseFloat($(tds[2]).text())+parseFloat($(tds[3]).text()),
 				}) ;
 		}
 		var mod_cond_field = [] ;
