@@ -81,7 +81,7 @@ $(function () {
 				}) ;
 		}
 		var mod_cond_bound = [] ;
-		trs = $('#table_modeling tbody tr[data-type=S__0]') ;
+		trs = $('#table_modeling tbody tr[data-type=S__G]') ;
 		for(var i=0;i<trs.length;++i){
 			var tr = $(trs[i]) ;
 			mod_cond_bound.push({
@@ -115,7 +115,8 @@ $(function () {
 			async: true ,
 			success: function(data) {
 				console.log(data) ;
-				response_data = data ;
+				response_data = data.points ;
+				totalErrorDiv.html("Похибка = " + data.total_error);
 				$('#ex1').slider({
 					formatter: plotData
 				});
@@ -155,6 +156,8 @@ $(function () {
     $('#table_a1').editableTableWidget();
     $('#table_b0').editableTableWidget();
     $('#table_b1').editableTableWidget();
+
+    var totalErrorDiv = $('#total_error');
 
     var d3 = Plotly.d3;
     // var myPlot = document.getElementById('myDiv');

@@ -116,7 +116,10 @@ func solve(ctx echo.Context) error {
 		return err
 	}
 
-	var res []jsPoints
+	var res struct {
+		Points     []jsPoints `json:"points"`
+		TotalError float64    `json:"total_error"`
+	}
 
 	fout, err := os.Open("./cpp/out.txt")
 	if err != nil {
@@ -143,8 +146,12 @@ func solve(ctx echo.Context) error {
 			}
 			fmt.Fscanln(fout)
 		}
-		res = append(res, p)
+		res.Points = append(res.Points, p)
 	}
+
+	var totalError float64
+	fmt.Fscanf(fout, "%f\n", &totalError)
+	res.TotalError = totalError
 
 	jRes, err := json.Marshal(res)
 	if err != nil {
