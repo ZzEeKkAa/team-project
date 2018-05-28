@@ -2,7 +2,7 @@
 clc;
 clear;
 in_file_path = './cpp/in.txt' ;
-data = importdata(in_file_path) ;
+data = importdata(in_file_path, ' ') ;
 global in_G_ind = data(1,1) ;%индекс функци G
 data(1,:) = [] ;
 
@@ -87,9 +87,13 @@ Y = [in_Y0 - f_G(in_S0(:,1)*ones(1,in_M) - ones(in_L0,1)*in_Sm(:,1)',in_S0(:,2)*
 A = [(f_G(in_S0(:,1)*ones(1,in_M0) - ones(in_L0,1)*in_Sm0(:,1)',in_S0(:,2)*ones(1,in_M0) - ones(in_L0,1)*in_Sm0(:,2)',in_S0(:,3)*ones(1,in_M0) - ones(in_L0,1)*in_Sm0(:,3)')) (f_G(in_S0(:,1)*ones(1,in_MG) - ones(in_L0,1)*in_SmG(:,1)',in_S0(:,2)*ones(1,in_MG) - ones(in_L0,1)*in_SmG(:,2)',in_S0(:,3)*ones(1,in_MG) - ones(in_L0,1)*in_SmG(:,3)'));
 (f_G(in_SG(:,1)*ones(1,in_M0) - ones(in_LG,1)*in_Sm0(:,1)',in_SG(:,2)*ones(1,in_M0) - ones(in_LG,1)*in_Sm0(:,2)',in_SG(:,3)*ones(1,in_M0) - ones(in_LG,1)*in_Sm0(:,3)')) (f_G(in_SG(:,1)*ones(1,in_MG) - ones(in_LG,1)*in_SmG(:,1)',in_SG(:,2)*ones(1,in_MG) - ones(in_LG,1)*in_SmG(:,2)',in_SG(:,3)*ones(1,in_MG) - ones(in_LG,1)*in_SmG(:,3)'))] ;
 
+
 %вектор U
 U = pinv(A)*Y;
+%A
+%Y
 
+%U
 %коефициенты для моделирующих начальные условия точки
 global U0 = U(1:in_M0);
 %коефициенты для моделирующих граничные
@@ -123,7 +127,7 @@ temp = RESULT((end-in_N_x2):end,:) ;
 %figure ;
 %surf(X,Y,temp) ;
 %figure ;
-temp = real_RESULT((end-in_N_x2):end,:) ;
+%temp = real_RESULT((end-in_N_x2):end,:) ;
 %surf(X,Y,temp) ;
 
 diff_L0 = f_y(in_S0(:,1),in_S0(:,2),in_S0(:,3)) - in_Y0 ;
@@ -142,4 +146,14 @@ for ii = 1:size(RESULT,1)
     fprintf(fileID,'\r\n');
 end
 fprintf(fileID,'%g\r\n',diff_result);
+fprintf(fileID,'%g\r\n',in_L0);
+for ii=1:in_L0
+    fprintf(fileID,'%g\t%g\t%g\t%g\t%g\t%g\t',in_S0(ii,1),in_S0(ii,2),in_S0(ii,3),f_y(in_S0(ii,1),in_S0(ii,2),in_S0(ii,3)),in_Y0(ii),diff_L0(ii));
+    fprintf(fileID,'\r\n');
+end
+fprintf(fileID,'%g\r\n',in_LG);
+for ii=1:in_LG
+    fprintf(fileID,'%g\t%g\t%g\t%g\t%g\t%g\t',in_SG(ii,1),in_SG(ii,2),in_SG(ii,3),f_y(in_SG(ii,1),in_SG(ii,2),in_SG(ii,3)),in_YG(ii),diff_LG(ii));
+    fprintf(fileID,'\r\n');
+end
 fclose(fileID);
